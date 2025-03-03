@@ -1,0 +1,81 @@
+/* Основной контейнер */
+.tableContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #000;
+  padding: 20px;
+}
+
+/* Стили для таблицы */
+.tableWrapper {
+  width: 90%;
+  max-width: 1200px;
+  border: 2px solid #fff;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.overflowXAuto {
+  overflow-x: auto;
+}
+
+/* Таблица */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #111;
+  color: #fff;
+  text-align: center;
+}
+
+/* Заголовок таблицы */
+.thead {
+  background-color: #222;
+  font-size: 18px;
+}
+
+.tableHeader {
+  padding: 15px;
+  border: 1px solid #666;
+  font-weight: bold;
+}
+
+/* Строки таблицы */
+.tableRow:nth-child(even) {
+  background-color: #222;
+}
+
+.tableRow:nth-child(odd) {
+  background-color: #111;
+}
+
+.tableCell {
+  padding: 12px;
+  border: 1px solid #666;
+}
+
+/* Закругленные углы */
+.tableHeader:first-child, .tableCell:first-child {
+  border-left: none;
+}
+
+.tableHeader:last-child, .tableCell:last-child {
+  border-right: none;
+}
+
+.tableRow:first-child .tableHeader {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.tableRow:last-child .tableCell {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+/* Центрирование текста */
+.textCenter {
+  text-align: center;
+}
