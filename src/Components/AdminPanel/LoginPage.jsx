@@ -1,23 +1,30 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useAuthCheck } from "./useAuthCheck";
+import useAuthCheck from "./useAuthCheck";
 import { Input, Button } from "./Elements";
 
 export function SignIn() {
+
+  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
 
+
   const handleSignIn = async () => {
     try {
       await axios.post("http://localhost:8000/sign-in", { email, password }, {withCredentials: true});
-      navigate("/dashboard");
+      navigate("/admin");
     } catch (error) {
       alert("Ошибка входа");
     }
   };
+  const isAuthenticated = useAuthCheck();
+
+  if (!isAuthenticated) return null
+
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100 p-4">
@@ -29,4 +36,6 @@ export function SignIn() {
       </div>
     </div>
   );
+
+  
 }

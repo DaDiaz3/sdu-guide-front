@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useAuthCheck } from "./useAuthCheck";
+import  useAuthCheck from "./useAuthCheck";
 import { Input, Button } from "./Elements";
 
 export function SignUp() {
@@ -14,11 +14,15 @@ export function SignUp() {
   const handleSignUp = async () => {
     try {
       await axios.post("http://localhost:8000/sign-up", { login, email, password });
-      navigate("/dashboard");
+      navigate("/login");
     } catch (error) {
       alert("Ошибка регистрации");
     }
   };
+
+  const isAuthenticated = useAuthCheck();
+
+  if (!isAuthenticated) return null
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100 p-4">

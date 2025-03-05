@@ -1,20 +1,39 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 
-export function useAuthCheck() {
+function useAuthCheck() {
   const navigate = useNavigate();
-  const isChecked = useRef(false); // Храним состояние выполнения
+  const [isAuthenticated, setIsAuthenticated] = useState(
+    () => localStorage.getItem("isAuthenticated") === "true"
+  );
 
-  useEffect(() => {
-    if (isChecked.current) return; // Если уже вызывалось, прерываем выполнение
-    isChecked.current = true;
-
-    const login = prompt("Введите логин:");
-    const password = prompt("Введите пароль:");
-
-    if (login !== "admin" || password !== "password") {
+  const checkAuth = useCallback(() => {
+    const login = window.prompt("Введите логин:");
+    const password = window.prompt("Введите пароль:");
+    
+    if (login === "admin" && password === "password") {
+      setIsAuthenticated(true);
+      localStorage.setItem("isAuthenticated", "true");
+    } else {
       alert("Неверные учетные данные");
-      navigate("/");
+      navigate("/admin");
     }
   }, [navigate]);
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      const timer = setTimeout(checkAuth, 4);
+      return () => clearTimeout(timer);
+    }
+  }, [checkAuth, isAuthenticated]);
+
+  const logout = () => {
+    localStorage.removeItem("isAuthenticated");
+    setIsAuthenticated(false);
+    navigate("/");
+  };
+
+  return { isAuthenticated, logout };
 }
+
+export default useAuthCheck;
