@@ -5,22 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e35602d3-0e46-4823-ad76-b257a5536a7e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Footer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/HomePage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/HowToPage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Navbar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Card.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Input.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/assets/SDUlogo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/assets/campus2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/assets/campus3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/assets/campusmap.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/assets/footerLOGO.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +32,7 @@
   &quot;keyToString&quot;: {
     &quot;Node.js.HomePage.js.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/shirogane/PROJECTS/my-app/src/components/assets&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,

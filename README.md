@@ -37,6 +37,13 @@ npm install react-icons
 npm install react-router-dom
 ```
 
+### Установка devDependencies
+
+Для работы со стилями и сборкой проекта установите следующие зависимости:
+```
+npm install --save-dev autoprefixer@10.4.20 postcss@8.5.3 tailwindcss@3.4.1
+```
+
 ## Структура проекта
 
 Проект состоит из следующих страниц и компонентов:
@@ -56,4 +63,3 @@ npm start
 ```
 
 Откройте [http://localhost:3000](http://localhost:3000) в браузере, чтобы увидеть приложение в действии.
-
