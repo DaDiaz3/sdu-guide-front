@@ -20,6 +20,11 @@ npm install react
 
 ### Установка дополнительных библиотек
 
+#### XLSX (для работы с Excel файлами)
+```
+npm install xlsx
+```
+
 Для работы проекта необходимо установить следующие библиотеки:
 
 #### Lucide React
@@ -35,6 +40,11 @@ npm install react-icons
 #### React Router DOM (для маршрутизации)
 ```
 npm install react-router-dom
+```
+
+#### Axios (для работы с HTTP-запросами)
+```
+npm install axios
 ```
 
 ### Установка devDependencies
@@ -56,6 +66,18 @@ npm install --save-dev autoprefixer@10.4.20 postcss@8.5.3 tailwindcss@3.4.1
 - **Все изображения** находятся в папке: `src/components/assets`
 
 ## Запуск проекта
+
+### Доступ к админ-панели
+
+В проекте реализована админ-панель, доступ к которой можно получить по адресу:
+```
+http://localhost:3000/admin
+```
+
+При первом переходе потребуется ввести логин и пароль:
+- **Логин:** admin
+- **Пароль:** password
+
 
 Для запуска проекта используйте команду:
 ```

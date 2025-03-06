@@ -1,11 +1,11 @@
 import React from "react";
 import { Search } from "lucide-react";
-import { Input } from "./components/Input";
-import { Card, CardContent } from "./components/Card";
+import { Input } from "./Components/Input";
+import { Card, CardContent } from "./Components/Card";
 
 // Подключаем изображения
-import heroImage from "./components/assets/campus2.png";
-import campusMap from "./components/assets/campusmap.png";
+import heroImage from "./Components/assets/campus2.png";
+import campusMap from "./Components/assets/campusmap.png";
 
 // Импортируем Navbar и Footer
 import Navbar from "./Navbar";

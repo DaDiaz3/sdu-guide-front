@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaChevronDown } from "react-icons/fa";
-import sduLogo from "./components/assets/SDUlogo.png"; // Логотип SDU
+import sduLogo from "./Components/assets/SDUlogo.png"; // Логотип SDU
 
 export default function Navbar() {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);

@@ -44,14 +44,14 @@ export default function AdminWelcome() {
   }, [navigate]);
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100 p-4">
+    <div className="">
        <AppBar/>
       <Card className="w-full max-w-md">
         <CardHeader>
           <CardTitle>Добро пожаловать в Админ Панель</CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-gray-600 mb-4">Управляйте системой с удобным интерфейсом.</p>
+          <p className="">Управляйте системой с удобным интерфейсом.</p>
           <Button onClick={() => navigate("/rooms")}>Перейти в панель управления</Button>
         </CardContent>
       </Card>

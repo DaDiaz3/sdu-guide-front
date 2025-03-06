@@ -1,6 +1,6 @@
 import React from "react";
 import { Instagram, Facebook, Send, Music } from "lucide-react";
-import footerLogo from "./components/assets/footerLOGO.png"; // Логотип в футере
+import footerLogo from "./Components/assets/footerLOGO.png"; // Логотип в футере
 
 export default function Footer() {
     return (

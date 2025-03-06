@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "./Navbar"; // Навбар
 import Footer from "./Footer"; // Футер
-import campusMap from "./components/assets/campus3.png"; // Карта кампуса
+import campusMap from "./Components/assets/campus3.png"; // Карта кампуса
 import { ExternalLink, Clock } from "lucide-react"; // Иконки
 
 export default function HowToPage() {
