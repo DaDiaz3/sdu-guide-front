@@ -86,6 +86,18 @@ export default function RoomsList() {
       .catch(() => alert("Ошибка при сохранении комнаты"));
   };
 
+  const handleDelete = async (id) => {
+    if (!window.confirm("Вы уверены, что хотите удалить эту комнату?")) return;
+  
+    try {
+      await axios.delete(`http://localhost:8000/delete-room/${id}`, { withCredentials: true });
+      setRooms(rooms.filter(room => room.id !== id));
+    } catch (error) {
+      alert("Ошибка при удалении комнаты");
+    }
+  };
+  
+
   const handleFileUpload = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -391,8 +403,14 @@ export default function RoomsList() {
                 <td>{room.hash}</td>
                 <td className={styles.actions}>
                   <button onClick={() => handleEdit(room)}><Edit /></button>
-                  <button><Trash2 /></button>
-                  <button onClick={() => navigate("/xlsxViewer/" + room.hash)}><FolderOpenDot /></button>
+                  <button onClick={() => handleDelete(room.id)}>
+                    <Trash2 />
+                  </button>
+                  {room.hash && (
+                    <button onClick={() => navigate("/xlsxViewer/" + room.hash)}>
+                      <FolderOpenDot />
+                    </button>
+                  )}
                 </td>
               </tr>
             ))}

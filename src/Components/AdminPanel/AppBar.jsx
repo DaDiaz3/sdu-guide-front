@@ -101,11 +101,11 @@ export default function AppBar() {
             color: "#333",
             transition: "color 0.3s",
           }}
-          onClick={() => navigate("/uploads")}
+          onClick={() => navigate("/events")}
           onMouseEnter={(e) => (e.target.style.color = "#007bff")}
           onMouseLeave={(e) => (e.target.style.color = "#333")}
         >
-          Uploads
+          Events
         </div>
       </div>
 
