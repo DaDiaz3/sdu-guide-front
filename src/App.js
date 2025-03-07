@@ -9,6 +9,7 @@ import XlsxViewer from "./Components/AdminPanel/XlsxViwer/XlsxViewer";
 import RoomsList from "./Components/AdminPanel/RoomsPage";
 import ProfilePage from "./Components/AdminPanel/ProfilePage"
 import ProfileUpdatePage from "./Components/AdminPanel/ProfileEditPage";
+import EventsList from "./Components/AdminPanel/EventsPage";
 
 function App() {
     return (
@@ -25,6 +26,7 @@ function App() {
                 <Route path="/rooms" element={<RoomsList/>} />
                 <Route path="/profile" element={<ProfilePage/>} />
                 <Route path="/update-user" element={<ProfileUpdatePage/>} />
+                <Route path="/events" element={<EventsList/>} />
             </Routes>
         </Router>
     );
