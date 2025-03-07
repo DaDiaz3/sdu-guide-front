@@ -33,7 +33,7 @@ const ProfilePage = () => {
             <AppBar />
             <div style={{ display: "flex", flexDirection: "column", marginBottom: "50px" }} className="container mt-4">
                 <div style={{ marginLeft: "100px", marginRight: "100px", marginTop: "60px" }}>
-                    <h1 style={{ fontSize: "50px", color: "#33437C", fontWeight: "lighter" }}>Личный кабинет</h1>
+                    <h1 style={{ fontSize: "50px", color: "#33437C", fontWeight: "lighter" , textAlign:"center"}}>Личный кабинет</h1>
                     {user && (
                         <div style={{ display: "flex", alignItems: "start", justifyContent: "center", marginTop: "30px" }}>
                             {/* Блок с аватаром */}

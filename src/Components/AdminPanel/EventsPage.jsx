@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { Edit, Trash2, PlusCircle } from "lucide-react";
 import AppBar from "./AppBar";
@@ -9,6 +9,7 @@ export default function EventsList() {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const fileInputRef = useRef(null); 
 
   const [showForm, setShowForm] = useState(false);
   const [editMode, setEditMode] = useState(false);
@@ -19,7 +20,7 @@ export default function EventsList() {
 
 
 
-  const [newEvent, setNewEvent] = useState({ name: "", place: "", date:"", startTime: "", endTime: "" });
+  const [newEvent, setNewEvent] = useState({ name: "", place: "", date:"", startTime: "", endTime: "", hash:"" });
 
   useEffect(() => {
     axios.get("http://localhost:8000/getAll-events", { withCredentials: true })
@@ -37,6 +38,14 @@ export default function EventsList() {
       });
   }, []);
 
+
+  const handleClearHash = () => {
+    setNewEvent({ ...newEvent, hash: "" });
+  
+    if (fileInputRef.current) {
+      fileInputRef.current.value = ""; // Очистить файл в uploader'е
+    }
+  };
 
 
   const handleSubmit = (e) => {
@@ -85,12 +94,33 @@ export default function EventsList() {
       date: event.date ? new Date(event.date).toISOString().split("T")[0] : "",
       startTime: event.startTime,
       endTime: event.endTime,
-      ended: event.ended || false // Если ended нет, по умолчанию false
+      ended: event.ended || false, // Если ended нет, по умолчанию false 
+      hash: event.hash
     });
     setEditMode(true);
     setShowForm(true);
   };
   
+
+  const handleFileUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    
+    const formData = new FormData();
+    formData.append("image", file);
+    
+    try {
+      const response = await axios.post("http://localhost:8000/upload-image", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+        withCredentials: true,
+      });
+      setNewEvent((prev) => ({ ...prev, hash: response.data.hash }));
+    } catch {
+      alert("Ошибка загрузки файла");
+    }
+  };
+
+
 
   if (loading) return <p>Загрузка...</p>;
   if (error) return <p>{error}</p>;
@@ -98,7 +128,7 @@ export default function EventsList() {
   return (
     <div>
       <AppBar />
-      <div className={styles.container}>
+      <div className={styles.container} style={{}}>
         {/* Начало фильтра */}
         <div className={styles.filterContainer} style={{ display:"flex", flexDirection:"row", justifyContent:"end"}}>
           <button className={styles.addButton} onClick={() => { 
@@ -217,8 +247,29 @@ export default function EventsList() {
                 />
 
               
+                <input type="file" id="file" style={{ display: 'none' }} onChange={handleFileUpload} />
+                <label htmlFor="file" style={{ padding: '10px 20px', backgroundColor: '#33437C', color: '#fff', borderRadius: '5px', cursor: 'pointer', marginTop: '10px', fontWeight: "bold" }}>Выберите файл</label>
               
-             
+                {newEvent.hash && (
+                <button
+                  type="button"
+                  onClick={handleClearHash}
+                  style={{
+                    backgroundColor: "#ffc107",
+                    color: "#333",
+                    padding: "10px",
+                    border: "none",
+                    borderRadius: "5px",
+                    cursor: "pointer",
+                    transition: "background 0.3s",
+                    marginBottom: "10px",
+                  }}
+                  onMouseOver={(e) => (e.target.style.backgroundColor = "#e0a800")}
+                  onMouseOut={(e) => (e.target.style.backgroundColor = "#ffc107")}
+                >
+                  Очистить hash
+                </button>
+              )}
 
               <div style={{ display: "flex", justifyContent: "space-between", marginTop: "15px" }}>
                 <button
@@ -268,6 +319,7 @@ export default function EventsList() {
               <th>ID</th>
               <th>Название</th>
               <th>Место</th>
+              <th>Фото</th>
               <th>Дата</th>
               <th>Начало</th>
               <th>Конец</th>
@@ -281,6 +333,18 @@ export default function EventsList() {
                 <td>{event.id}</td>
                 <td>{event.name}</td>
                 <td>{event.place}</td>
+                <td>
+                    {event.hash ? (
+                        <img
+                        src={`http://localhost:8000/image/${event.hash}`}
+                        alt="Event"
+                        style={{ width: "150px" }}
+                        />
+                    ) : (
+                        <span>-</span>
+                    )}
+                </td>
+
                 <td>{new Date(event.date).toLocaleDateString("ru-RU").replace(/\//g, '.')}</td>
                 <td>{event.startTime}</td>
                 <td>{event.endTime}</td>
