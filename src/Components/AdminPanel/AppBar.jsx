@@ -86,7 +86,7 @@ export default function AppBar() {
             color: "#333",
             transition: "color 0.3s",
           }}
-          onClick={() => navigate("/rooms")}
+          onClick={() => navigate("/admin/rooms")}
           onMouseEnter={(e) => (e.target.style.color = "#007bff")}
           onMouseLeave={(e) => (e.target.style.color = "#333")}
         >
@@ -101,7 +101,7 @@ export default function AppBar() {
             color: "#333",
             transition: "color 0.3s",
           }}
-          onClick={() => navigate("/events")}
+          onClick={() => navigate("/admin/events")}
           onMouseEnter={(e) => (e.target.style.color = "#007bff")}
           onMouseLeave={(e) => (e.target.style.color = "#333")}
         >

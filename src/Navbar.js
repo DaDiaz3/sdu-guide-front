@@ -39,7 +39,7 @@ export default function Navbar() {
                     </div>
 
                     <span className="text-black font-bold">•</span>
-                    <a href="#" className="hover:text-gray-900">Event</a>
+                    <a href="/event" className="hover:text-gray-900">Event</a>
                     <span className="text-black font-bold">•</span>
                     <a href="#" className="hover:text-gray-900">Others</a>
                 </nav>

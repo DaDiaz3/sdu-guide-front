@@ -52,7 +52,7 @@ export default function AdminWelcome() {
         </CardHeader>
         <CardContent>
           <p className="">Управляйте системой с удобным интерфейсом.</p>
-          <Button onClick={() => navigate("/rooms")}>Перейти в панель управления</Button>
+          <Button onClick={() => navigate("/admin/rooms")}>Перейти в панель управления</Button>
         </CardContent>
       </Card>
     </div>
