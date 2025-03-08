@@ -11,9 +11,18 @@ export default function Events() {
 
 
     useEffect(() => {
-        axios.get("http://localhost:8000/getAll-events", { params: { filter: 3 }, withCredentials: true })
+        axios.get("http://localhost:8000/getAll-events", { params: { filter: 3, withEnded: false }, withCredentials: true })
             .then(response => {
                 setEvents(response.data.data);
+            })
+            .catch(error => {
+                console.error("Error fetching events:", error);
+            });
+    }, []);
+
+    useEffect(() => {
+        axios.get("http://localhost:8000/getAll-events-currentMonth", { withCredentials: true })
+            .then(response => {
                 generateCalendar(response.data.data);
             })
             .catch(error => {
@@ -86,7 +95,8 @@ export default function Events() {
                                             <span>
                                                 {new Date(`1970-01-01T${event.startTime}`).toLocaleTimeString("en-US", {
                                                     hour: "2-digit", minute: "2-digit", hour12: true
-                                                })} -
+                                                })}{" "}
+                                                -{" "}
                                                 {new Date(`1970-01-01T${event.endTime}`).toLocaleTimeString("en-US", {
                                                     hour: "2-digit", minute: "2-digit", hour12: true
                                                 })}
@@ -136,7 +146,7 @@ export default function Events() {
                             <span className="absolute top-2 left-2 font-bold text-lg">{cell.day}</span>
                             {cell.event && (
                                 <span className="text-sm text-black-200 text-center mt-6">
-                                    {cell.event.name}
+                                    {cell.event.shortName ? cell.event.shortName : cell.event.name}
                                 </span>
                             )}
                         </>

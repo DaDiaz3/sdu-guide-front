@@ -20,10 +20,10 @@ export default function EventsList() {
 
 
 
-  const [newEvent, setNewEvent] = useState({ name: "", place: "", date:"", startTime: "", endTime: "", hash:"" });
+  const [newEvent, setNewEvent] = useState({ name: "", place: "", date:"", startTime: "", endTime: "", hash:"",shortName:"" });
 
   useEffect(() => {
-    axios.get("http://localhost:8000/getAll-events", { withCredentials: true })
+    axios.get("http://localhost:8000/getAll-events", { withCredentials: true, params:{withEnded: true} })
       .then(response => {
         setEvents(response.data.data);
         setLoading(false);
@@ -95,7 +95,8 @@ export default function EventsList() {
       startTime: event.startTime,
       endTime: event.endTime,
       ended: event.ended || false, // Если ended нет, по умолчанию false 
-      hash: event.hash
+      hash: event.hash,
+      shortName: event.shortName
     });
     setEditMode(true);
     setShowForm(true);
@@ -170,6 +171,21 @@ export default function EventsList() {
                 type="text"
                 value={newEvent.name}
                 onChange={(e) => setNewEvent({ ...newEvent, name: e.target.value })}
+                required
+                style={{
+                  padding: "10px",
+                  border: "1px solid #ccc",
+                  borderRadius: "5px",
+                  outline: "none",
+                  transition: "border 0.2s",
+                }}
+              />
+
+               <label style={{ fontWeight: "bold", marginBottom: "5px", color: "#555" }}>Краткое название(для календаря):</label>
+              <input
+                type="text"
+                value={newEvent.shortName}
+                onChange={(e) => setNewEvent({ ...newEvent, shortName: e.target.value })}
                 required
                 style={{
                   padding: "10px",
@@ -318,6 +334,7 @@ export default function EventsList() {
             <tr>
               <th>ID</th>
               <th>Название</th>
+              <th>Кратко название</th>
               <th>Место</th>
               <th>Фото</th>
               <th>Дата</th>
@@ -332,6 +349,7 @@ export default function EventsList() {
               <tr key={event.id}>
                 <td>{event.id}</td>
                 <td>{event.name}</td>
+                <td>{event.shortName}</td>
                 <td>{event.place}</td>
                 <td>
                     {event.hash ? (
