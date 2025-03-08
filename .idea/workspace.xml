@@ -5,8 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e35602d3-0e46-4823-ad76-b257a5536a7e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/BlockD.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/BlockE.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/BlockF.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/BlockG.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/BlockH.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/BlockI.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/assets/blockspng/BlockD.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/assets/blockspng/BlockE.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/assets/blockspng/BlockF.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/assets/blockspng/BlockG.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/assets/blockspng/BlockH.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/assets/blockspng/BlockI.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Navbar.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,6 +63,7 @@
       <recent name="C:\Users\shirogane\PROJECTS\my-app\src\components\images" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\shirogane\PROJECTS\my-app\src\Components\assets\blockspng" />
       <recent name="C:\Users\shirogane\PROJECTS\my-app\src\components\assets" />
     </key>
   </component>
@@ -74,6 +88,7 @@
       <workItem from="1741193600972" duration="3884000" />
       <workItem from="1741279486244" duration="2659000" />
       <workItem from="1741285169429" duration="723000" />
+      <workItem from="1741468191229" duration="1517000" />
     </task>
     <servers />
   </component>

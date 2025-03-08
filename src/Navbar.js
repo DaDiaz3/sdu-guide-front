@@ -28,12 +28,12 @@ export default function Navbar() {
                         </button>
                         {isDropdownOpen && (
                             <div className="absolute left-1/2 transform -translate-x-1/2 mt-3 w-40 bg-white shadow-lg rounded-lg py-2 border border-gray-200">
-                                <a href="#" className="block px-4 py-2 hover:bg-gray-100">Block D</a>
-                                <a href="#" className="block px-4 py-2 hover:bg-gray-100">Block E</a>
-                                <a href="#" className="block px-4 py-2 hover:bg-gray-100">Block F</a>
-                                <a href="#" className="block px-4 py-2 hover:bg-gray-100">Block G</a>
-                                <a href="#" className="block px-4 py-2 hover:bg-gray-100">Block H</a>
-                                <a href="#" className="block px-4 py-2 hover:bg-gray-100">Block I</a>
+                                <a href="/BlockD" className="block px-4 py-2 hover:bg-gray-100">Block D</a>
+                                <a href="/BlockE" className="block px-4 py-2 hover:bg-gray-100">Block E</a>
+                                <a href="/BlockF" className="block px-4 py-2 hover:bg-gray-100">Block F</a>
+                                <a href="/BlockG" className="block px-4 py-2 hover:bg-gray-100">Block G</a>
+                                <a href="/BlockH" className="block px-4 py-2 hover:bg-gray-100">Block H</a>
+                                <a href="/BlockI" className="block px-4 py-2 hover:bg-gray-100">Block I</a>
                             </div>
                         )}
                     </div>
