@@ -1,27 +1,23 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import axios from "axios";
 import * as XLSX from "xlsx";
-import styles from "./XlsxViewer.module.css";
-import AppBar from "../AppBar";
 
-export default function XlsxViewer() {
-  const { hash } = useParams(); // Получаем hash из URL
+export default function XlsxViewer({ room }) {
   const [data, setData] = useState([]);
 
   useEffect(() => {
     const fetchXlsx = async () => {
-      if (!hash) return; // Проверяем, что hash существует
+      if (!room) return;
 
       try {
-        const response = await axios.get(`http://localhost:8000/xlsx/${hash}`, {
+        const response = await axios.get(`http://localhost:8000/schedule/${room}`, {
           responseType: "arraybuffer",
         });
 
         const workbook = XLSX.read(new Uint8Array(response.data), { type: "array" });
         const sheetName = workbook.SheetNames[0];
         const sheet = workbook.Sheets[sheetName];
-        const jsonData = XLSX.utils.sheet_to_json(sheet);
+        const jsonData = XLSX.utils.sheet_to_json(sheet, { defval: "", raw: true });
 
         setData(jsonData);
       } catch (error) {
@@ -30,43 +26,32 @@ export default function XlsxViewer() {
     };
 
     fetchXlsx();
-  }, [hash]);
+  }, [room]);
 
   return (
-    <div>
-      <AppBar />
-      <div className={styles.tableContainer}>
-        <div className={styles.tableWrapper}>
-          {data.length > 0 ? (
-            <div className={styles.overflowXAuto}>
-              <table className={styles.table}>
-                <thead className={styles.thead}>
-                  <tr className={styles.tableRow}>
-                    {Object.keys(data[0]).map((key) => (
-                      <th key={key} className={styles.tableHeader}>
-                        {key}
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody className={styles.tbody}>
-                  {data.map((row, rowIndex) => (
-                    <tr key={rowIndex} className={styles.tableRow}>
-                      {Object.values(row).map((value, colIndex) => (
-                        <td key={colIndex} className={styles.tableCell}>
-                          {value}
-                        </td>
-                      ))}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          ) : (
-            <p className={styles.textCenter}>Загрузка...</p>
-          )}
-        </div>
-      </div>
+    <div className="max-h-[720px] overflow-y-auto">
+      {data.length > 0 ? (
+        <table className="w-full border border-white text-white border-separate border-spacing-2 rounded-[12px]">
+        <thead>
+            <tr>
+              {Object.keys(data[0]).map((key) => (
+                <th key={key} className="border border-white px-4 py-3 text-center rounded-[12px] w-40 h-12">{key}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {data.map((row, rowIndex) => (
+              <tr key={rowIndex} className={rowIndex % 2 === 0 ? "bg-[#00000066]" : "bg-[#00000066]" }>
+                {Object.values(row).map((value, colIndex) => (
+                  <td key={colIndex} className="border border-[#00000099] px-4 py-3 text-center text-sm rounded-lg w-[90px] h-[140px]">{value}</td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      ) : (
+        <p className="text-gray-400 text-center">У данной команты отсуствует расписание</p>
+      )}
     </div>
   );
 }

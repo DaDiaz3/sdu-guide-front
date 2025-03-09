@@ -306,6 +306,12 @@ export default function RoomsList() {
                 type="text"
                 value={newRoom.sef}
                 onChange={(e) => setNewRoom({ ...newRoom, sef: e.target.value })}
+                onFocus={() => {
+                  if (!newRoom.sef.trim()) {
+                    const generatedSEF = `${newRoom.block}-${newRoom.number}`.toLowerCase();
+                    setNewRoom({ ...newRoom, sef: generatedSEF });
+                  }
+                }}
                 required
                 style={{
                   padding: "10px",

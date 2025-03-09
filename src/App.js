@@ -30,12 +30,14 @@ import BlockIRightSide from"./BlockI/BlockIRightSide"
 import AdminWelcome from "./Components/AdminPanel/Welcome"; // Импортируем страницу
 import { SignIn } from "./Components/AdminPanel/LoginPage";
 import { SignUp } from "./Components/AdminPanel/RegisterPage";
-import XlsxViewer from "./Components/AdminPanel/XlsxViwer/XlsxViewer";
+import XlsxViewerAdmin from "./Components/AdminPanel/XlsxViwer/XlsxViewerAdmin";
 import RoomsList from "./Components/AdminPanel/RoomsPage";
 import ProfilePage from "./Components/AdminPanel/ProfilePage"
 import ProfileUpdatePage from "./Components/AdminPanel/ProfileEditPage";
 import EventsList from "./Components/AdminPanel/EventsPage";
 import Events from "./Events";
+import BuildingPlan from "./Components/AdminPanel/LeftBuildingPlan";
+import XlsxViewer from "./Components/AdminPanel/XlsxViwer/XlsxViewer";
 
 function App() {
     return (
@@ -73,12 +75,14 @@ function App() {
                 <Route path="/admin" element={<AdminWelcome />} />
                 <Route path="/login" element={<SignIn/>} />
                 <Route path="/register" element={<SignUp/>} />
-                <Route path="/xlsxViewer/:hash" element={<XlsxViewer/>} />
+                <Route path="/xlsxViewer/:hash" element={<XlsxViewerAdmin/>} />
+                <Route path="/schedule/:sef" element={<XlsxViewer/>} />
                 <Route path="/admin/rooms" element={<RoomsList/>} />
                 <Route path="/profile" element={<ProfilePage/>} />
                 <Route path="/update-user" element={<ProfileUpdatePage/>} />
                 <Route path="/admin/events" element={<EventsList/>} />
                 <Route path="/event" element={<Events/>} />
+                <Route path="/test" element={<BuildingPlan/>}/>
             </Routes>
         </Router>
     );

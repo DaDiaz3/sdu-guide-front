@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
-import BlockFLeft from "../Components/assets/blockspng/BlockFimages/BlockFLeft.png";
+import BuildingPlan from "../Components/AdminPanel/LeftBuildingPlan";
 
 export default function HowToPage() {
     return (
@@ -17,20 +17,7 @@ export default function HowToPage() {
                 </section>
 
                 <section className="w-full flex justify-center py-12 px-8 bg-white rounded-lg shadow-lg relative">
-                    {/* Картинка */}
-                    <img src={BlockFLeft} alt="Campus Map" className="w-[80%] max-w-[1200px] rounded-lg shadow-md"/>
-
-                    {/* Невидимые кликабельные области (hotspots) */}
-                    {["37%", "49%", "61.6%"].map((top, rowIndex) => (
-                        ["34%", "43.2%", "52.5%", "61.4%", "69.6%"].map((left, colIndex) => (
-                            <button
-                                key={`${rowIndex}-${colIndex}`}
-                                className="absolute w-[30px] h-[40px] bg-transparent"
-                                style={{ top, left }}
-                                onClick={() => alert(`Вы нажали на дверь ${rowIndex + 1}-${colIndex + 1}`)}
-                            />
-                        ))
-                    ))}
+                    <BuildingPlan svgPath={"/left-f.svg"} roomPrefix={"f"}></BuildingPlan>
                 </section>
             </main>
 
