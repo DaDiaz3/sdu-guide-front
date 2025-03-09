@@ -1,7 +1,7 @@
 import React from "react";
-import Navbar from "./Navbar"; // Навбар
-import Footer from "./Footer"; // Футер
-import BlockD from "./Components/assets/blockspng/BlockD.png"; //
+import Navbar from "../Navbar"; // Навбар
+import Footer from "../Footer"; // Футер
+import BlockIRight from "../Components/assets/blockspng/BlockIimages/BlockIRight.png"; //
 
 export default function HowToPage() {
     return (
@@ -13,13 +13,13 @@ export default function HowToPage() {
             <main>
                 {/* Заголовок */}
                 <section className="bg-[#4C6740] w-full h-[262px] flex items-center justify-center shadow-md">
-                    <h1 className="text-white text-[48px] font-normal font-[Cormorant]">Block D</h1>
+                    <h1 className="text-white text-[48px] font-normal font-[Cormorant]">Block I</h1>
                 </section>
 
                 {/* Блок с картой */}
                 <section className="w-full flex justify-center py-12 px-8 bg-white rounded-lg shadow-lg">
                     {/* Картинка */}
-                    <img src={BlockD} alt="Campus Map" className="w-[60%] rounded-lg shadow-md"/>
+                    <img src={BlockIRight} alt="Campus Map" className="w-[80%] max-w-[1200px] rounded-lg shadow-md"/>
                 </section>
             </main>
 
