@@ -1,8 +1,7 @@
 import React from "react";
 import Navbar from "../Navbar"; // Навбар
 import Footer from "../Footer"; // Футер
-import BlockDLeft from "../Components/assets/blockspng/BlockDimages/BlockDLeft.png"; //
-import BuildingPlan from "../Components/AdminPanel/LeftBuildingPlan";
+import LeftBuildingPlan from "../Components/AdminPanel/LeftBuildingPlan";
 
 export default function HowToPage() {
     return (
@@ -19,7 +18,7 @@ export default function HowToPage() {
 
                 <section className="w-full flex justify-center py-12 px-8 bg-white rounded-lg shadow-lg">
                     {/* Картинка увеличена */}
-                   <BuildingPlan svgPath={"/left-d.svg"} roomPrefix={"d"}></BuildingPlan>
+                   <LeftBuildingPlan svgPath={"/left-d.svg"} roomPrefix={"d"}></LeftBuildingPlan>
                 </section>
             </main>
 
