@@ -5,45 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e35602d3-0e46-4823-ad76-b257a5536a7e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/BlockD/BlockD.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/BlockD/BlockDLeftSide.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/BlockD/BlockDRightSide.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/BlockE/BlockELeftSide.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/BlockE/BlockERightSide.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/BlockF/BlockFLeftSide.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/BlockF/BlockFRightSide.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/BlockG/BlockGLeftSide.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/BlockG/BlockGRightSide.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/BlockH/BlockHLeftSide.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/BlockH/BlockHRightSide.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/BlockI/BlockILeftSide.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/BlockI/BlockIRightSide.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/assets/blockspng/BlockDimages/BlockDLeft.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/assets/blockspng/BlockDimages/BlockDRight.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/assets/blockspng/BlockEimages/BlockELeft.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/assets/blockspng/BlockEimages/BlockERight.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/assets/blockspng/BlockFimages/BlockFLeft.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/assets/blockspng/BlockFimages/BlockFRight.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/assets/blockspng/BlockGimages/BlockGLeft.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/assets/blockspng/BlockGimages/BlockGRight.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/assets/blockspng/BlockHimages/BlockHLeft.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/assets/blockspng/BlockHimages/BlockHRight.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/assets/blockspng/BlockIimages/BlockILeft.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/assets/blockspng/BlockIimages/BlockIRight.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BlockD.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BlockE.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/BlockE/BlockE.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BlockF.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/BlockF/BlockF.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BlockG.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/BlockG/BlockG.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BlockH.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/BlockH/BlockH.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BlockI.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/BlockI/BlockI.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/assets/blockspng/BlockD.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/assets/blockspng/BlockDimages/BlockD.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/assets/blockspng/BlockE.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/assets/blockspng/BlockEimages/BlockE.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/assets/blockspng/BlockF.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/assets/blockspng/BlockFimages/BlockF.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/assets/blockspng/BlockG.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/assets/blockspng/BlockGimages/BlockG.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/assets/blockspng/BlockH.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/assets/blockspng/BlockHimages/BlockH.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/assets/blockspng/BlockI.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/assets/blockspng/BlockIimages/BlockI.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BlockD/BlockDLeftSide.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/BlockD/BlockDLeftSide.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BlockD/BlockDRightSide.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/BlockD/BlockDRightSide.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BlockE/BlockELeftSide.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/BlockE/BlockELeftSide.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BlockE/BlockERightSide.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/BlockE/BlockERightSide.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BlockF/BlockFLeftSide.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/BlockF/BlockFLeftSide.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BlockF/BlockFRightSide.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/BlockF/BlockFRightSide.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BlockG/BlockGLeftSide.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/BlockG/BlockGLeftSide.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BlockG/BlockGRightSide.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/BlockG/BlockGRightSide.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BlockH/BlockHLeftSide.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/BlockH/BlockHLeftSide.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BlockH/BlockHRightSide.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/BlockH/BlockHRightSide.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BlockI/BlockILeftSide.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/BlockI/BlockILeftSide.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,7 +89,8 @@
       <workItem from="1741279486244" duration="2659000" />
       <workItem from="1741285169429" duration="723000" />
       <workItem from="1741468191229" duration="1910000" />
-      <workItem from="1741502942128" duration="3789000" />
+      <workItem from="1741502942128" duration="3884000" />
+      <workItem from="1741526013228" duration="2662000" />
     </task>
     <servers />
   </component>
