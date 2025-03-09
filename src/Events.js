@@ -3,11 +3,15 @@ import axios from "axios";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import { Calendar, Clock, MapPin } from "lucide-react";
+import { useTranslation } from "./LanguageContext"; // Подключаем контекст
+
 
 export default function Events() {
     const [events, setEvents] = useState([]);
     const [calendar, setCalendar] = useState([]);
     const currentMonth = new Date().toLocaleString("en-US", { month: "long" });
+    const { translations, setLanguage } = useTranslation();
+    
 
 
     useEffect(() => {
@@ -65,7 +69,7 @@ export default function Events() {
             <Navbar />
             <main className="flex-grow">
                 <section className="bg-[#4C6740] w-full h-[262px] flex items-center justify-center shadow-md">
-                    <h1 className="text-white text-[48px] font-normal">All Events</h1>
+                    <h1 className="text-white text-[48px] font-normal">{translations["all-events"] || "All Events"}</h1>
                 </section>
 
                 <section className="max-w-[88rem] mx-auto mt-40">

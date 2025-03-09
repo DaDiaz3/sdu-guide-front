@@ -39,8 +39,13 @@ import Events from "./Events";
 import BuildingPlan from "./Components/AdminPanel/LeftBuildingPlan";
 import XlsxViewer from "./Components/AdminPanel/XlsxViwer/XlsxViewer";
 
+import { LanguageProvider } from "./LanguageContext";
+
+
 function App() {
+
     return (
+        <LanguageProvider>
         <Router>
             <Routes>
                 {/* Главная страница */}
@@ -85,6 +90,7 @@ function App() {
                 <Route path="/test" element={<BuildingPlan/>}/>
             </Routes>
         </Router>
+        </LanguageProvider>
     );
 }
 

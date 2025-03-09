@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaChevronDown } from "react-icons/fa";
+import { useTranslation } from "./LanguageContext"; // Подключаем контекст
 import sduLogo from "./Components/assets/SDUlogo.png"; // Логотип SDU
 
 export default function Navbar() {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const { translations, setLanguage } = useTranslation();
+
+    console.log("setLanguage function:", setLanguage);
 
     return (
         <header className="bg-white shadow-md sticky top-0 z-20 py-4">
@@ -41,7 +45,19 @@ export default function Navbar() {
                     <span className="text-black font-bold">•</span>
                     <a href="/event" className="hover:text-gray-900">Event</a>
                     <span className="text-black font-bold">•</span>
-                    <a href="#" className="hover:text-gray-900">Others</a>
+                    <a href="#" className="hover:text-gray-900">{translations["others"] || "Others"}</a>
+
+                    {/* Переключение языка */}
+                    <button onClick={() => {
+                        console.log("Switching to English");
+                        setLanguage("en");
+                    }} className="px-3 py-1 border rounded hover:bg-gray-200">EN</button>
+
+                    <button onClick={() => {
+                        console.log("Switching to Russian");
+                        setLanguage("ru");
+                    }} className="px-3 py-1 border rounded hover:bg-gray-200">RU</button>
+
                 </nav>
             </div>
         </header>
