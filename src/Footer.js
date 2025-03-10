@@ -4,6 +4,7 @@ import footerLogo from "./Components/assets/footerLOGO.png"; // Светлый �
 import footerLogodark from "./Components/assets/footerLOGOdark.png"; // Тёмный логотип
 import { useTheme } from "./ThemeContext"; // Импортируем контекст темы
 import { useTranslation } from "./LanguageContext"; // Импортируем контекст перевода
+import { Link } from "react-router-dom";
 
 export default function Footer() {
     const { darkMode } = useTheme(); // Получаем текущий режим темы
@@ -17,10 +18,10 @@ export default function Footer() {
                     {translations.website || "WEBSITE"}
                 </h3>
                 <nav className="flex flex-col space-y-1">
-                    <a href="https://my.sdu.edu.kz/index.php?mod=schedule" className="hover:underline">{translations.portal2 || "Portal"}</a>
-                    <a href="/" className="hover:underline">{translations.faculties2 || "Faculties"}</a>
-                    <a href="/" className="hover:underline">{translations.maps_directions || "Maps and Directions"}</a>
-                    <a href="/event" className="hover:underline">{translations.events || "Events"}</a>
+                    <Link to="https://my.sdu.edu.kz/index.php?mod=schedule" className="hover:underline">{translations.portal2 || "Portal"}</Link>
+                    <Link to="/" className="hover:underline">{translations.faculties2 || "Faculties"}</Link>
+                    <Link to="/" className="hover:underline">{translations.maps_directions || "Maps and Directions"}</Link>
+                    <Link to="/event" className="hover:underline">{translations.events || "Events"}</Link>
                 </nav>
             </div>
 
