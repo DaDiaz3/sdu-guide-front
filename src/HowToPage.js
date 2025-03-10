@@ -48,13 +48,13 @@ export default function HowToPage() {
                      style={{ backgroundColor: darkMode ? "#3D4037" : "#878F71" }}>
                 <div className="w-[1440px] mx-auto flex items-center relative">
                     <div className="w-1/2 px-12 flex justify-center">
-                        <h2 className="text-[48px] font-normal font-[Playfair Display] translate-y-[-60px]">
+                        <h2 className="text-[48px] font-normal font-[Playfair Display] translate-y-[-60px] text-white">
                             {translations.why_our_portal || "Why our portal?"}
                         </h2>
                     </div>
                     <div className="absolute left-1/2 transform -translate-x-1/2 h-[601px] w-[2px] bg-white"></div>
                     <div className="w-1/2 px-12 flex justify-center">
-                        <p className="text-[32px] font-normal font-[Playfair Display] translate-y-[80px] leading-relaxed text-center">
+                        <p className="text-[32px] font-normal font-[Playfair Display] translate-y-[80px] leading-relaxed text-center text-white">
                             {translations.our_portal_benefits || "Our portal helps you easily navigate the university and save time."}
                         </p>
                     </div>
@@ -63,8 +63,8 @@ export default function HowToPage() {
 
             {/* Секция "Advantages" */}
             <section className="w-full py-16 px-6 text-center"
-                     style={{ backgroundColor: darkMode ? "#2F2D2D" : "#FFFFFF" }}>
-                <div className="max-w-[1440px] mx-auto">
+                     style={{backgroundColor: darkMode ? "#2F2D2D" : "#FFFFFF"}}>
+            <div className="max-w-[1440px] mx-auto">
                     <h2 className="text-[64px] font-[Cormorant Garamond] font-bold mb-12">
                         {translations.advantages || "Advantages"}
                     </h2>
