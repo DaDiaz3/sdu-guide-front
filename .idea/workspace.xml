@@ -5,18 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e35602d3-0e46-4823-ad76-b257a5536a7e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/public/locales/eng.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/locales/kaz.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BlockD/BlockDLeftSide.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/BlockD/BlockDLeftSide.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BlockD/BlockDRightSide.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/BlockD/BlockDRightSide.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BlockE/BlockELeftSide.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/BlockE/BlockELeftSide.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BlockE/BlockERightSide.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/BlockE/BlockERightSide.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BlockF/BlockFLeftSide.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/BlockF/BlockFLeftSide.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BlockF/BlockFRightSide.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/BlockF/BlockFRightSide.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BlockG/BlockGLeftSide.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/BlockG/BlockGLeftSide.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BlockG/BlockGRightSide.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/BlockG/BlockGRightSide.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BlockH/BlockHLeftSide.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/BlockH/BlockHLeftSide.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BlockH/BlockHRightSide.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/BlockH/BlockHRightSide.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BlockI/BlockILeftSide.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/BlockI/BlockILeftSide.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/locales/en.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/locales/ru.yml" beforeDir="false" afterPath="$PROJECT_DIR$/public/locales/ru.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Events.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Events.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/HomePage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HowToPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/HowToPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Navbar.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +87,9 @@
       <workItem from="1741285169429" duration="723000" />
       <workItem from="1741468191229" duration="1910000" />
       <workItem from="1741502942128" duration="3884000" />
-      <workItem from="1741526013228" duration="2662000" />
+      <workItem from="1741526013228" duration="2703000" />
+      <workItem from="1741539975963" duration="671000" />
+      <workItem from="1741586608830" duration="11082000" />
     </task>
     <servers />
   </component>

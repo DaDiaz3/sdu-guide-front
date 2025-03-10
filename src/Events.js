@@ -5,14 +5,11 @@ import Footer from "./Footer";
 import { Calendar, Clock, MapPin } from "lucide-react";
 import { useTranslation } from "./LanguageContext"; // Подключаем контекст
 
-
 export default function Events() {
     const [events, setEvents] = useState([]);
     const [calendar, setCalendar] = useState([]);
     const currentMonth = new Date().toLocaleString("en-US", { month: "long" });
-    const { translations, setLanguage } = useTranslation();
-    
-
+    const { translations } = useTranslation(); // Используем переводы
 
     useEffect(() => {
         axios.get("http://localhost:8000/getAll-events", { params: { filter: 3, withEnded: false }, withCredentials: true })
@@ -38,50 +35,50 @@ export default function Events() {
         const today = new Date();
         const year = today.getFullYear();
         const month = today.getMonth();
-        const firstDay = new Date(year, month, 1).getDay(); // День недели первого дня месяца
-        const daysInMonth = new Date(year, month + 1, 0).getDate(); // Количество дней в месяце
-        const lastDay = new Date(year, month, daysInMonth).getDay(); // День недели последнего дня месяца
-    
+        const firstDay = new Date(year, month, 1).getDay();
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        const lastDay = new Date(year, month, daysInMonth).getDay();
+
         let days = [];
-    
-        // Добавляем пустые ячейки перед началом месяца
+
         for (let i = 0; i < ((firstDay + 6) % 7); i++) {
             days.push(null);
         }
-    
-        // Заполняем календарь днями месяца
+
         for (let day = 1; day <= daysInMonth; day++) {
             const event = events.find(e => new Date(e.date).getDate() === day);
             days.push({ day, event });
         }
-    
-        // Добавляем пустые ячейки после окончания месяца
+
         for (let i = (lastDay % 7); i < 6; i++) {
             days.push(null);
         }
-    
+
         setCalendar(days);
     };
-    
 
     return (
         <div className="min-h-screen flex flex-col font-[Cormorant] bg-[#F8F8F8] text-black">
             <Navbar />
             <main className="flex-grow">
                 <section className="bg-[#4C6740] w-full h-[262px] flex items-center justify-center shadow-md">
-                    <h1 className="text-white text-[48px] font-normal">{translations["all-events"] || "All Events"}</h1>
+                    <h1 className="text-white text-[48px] font-normal">
+                        {translations["all-events"] || "All Events"}
+                    </h1>
                 </section>
 
                 <section className="max-w-[88rem] mx-auto mt-40">
-                    <h2 className="text-2xl text-center text-[48px] mb-6">Upcoming Events</h2>
+                    <h2 className="text-2xl text-center text-[48px] mb-6">
+                        {translations["upcoming-events"] || "Upcoming Events"}
+                    </h2>
                     <p className="text-center text-gray-600 mb-16 text-[25px]">
-                        Don't miss the most interesting events at our university!
+                        {translations["events-description"] || "Don't miss the most interesting events at our university!"}
                     </p>
                     <div className="space-y-6">
                         {events.map(event => (
                             <div key={event.id} className="p-4 rounded-lg flex gap-[30px]">
                                 <div className="w-[440px] h-80 bg-gray-300 flex items-center justify-center rounded-[30px] overflow-hidden">
-                                    <img src={`http://localhost:8000/image/${event.hash}`} className="w-full h-full object-cover" />
+                                    <img src={`http://localhost:8000/image/${event.hash}`} className="w-full h-full object-cover" alt={event.name} />
                                 </div>
                                 <div className="flex-1 w-[880px] p-[3.5rem] rounded-[30px] shadow-lg">
                                     <div className="inline-flex items-center gap-4 text-gray-500 px-4 py-2 rounded-[50px] border border-gray-700 w-fit m-[5px]">
@@ -117,52 +114,53 @@ export default function Events() {
                     </div>
                 </section>
 
-                {/* Календарь */}
                 <section className="max-w-[88rem] mx-auto mt-[200px] mb-[100px]">
-                <h2 className="text-2xl text-center text-[48px] mb-20">
-    The program of events for {currentMonth}
-</h2>
-    
-    <div className="border-2 border-gray-500 rounded-[40px] bg-[#4C674033] overflow-hidden">
-        <div className="grid grid-cols-7 gap-4 text-center text-lg leading-[4.75rem] bg-[#4c674014] text-[30px]">
-            <div>Monday</div><div>Tuesday</div><div>Wednesday</div><div>Thursday</div>
-            <div>Friday</div><div>Saturday</div><div>Sunday</div>
-        </div>
+                    <h2 className="text-2xl text-center text-[48px] mb-20">
+                        {translations["event-program"] || "The program of events for"} {currentMonth}
+                    </h2>
 
-        <div className="grid grid-cols-7">
-            {calendar.map((cell, index) => {
-                const isFirstRow = index < 7; // Первый ряд
-                const isLastRow = index >= calendar.length ; // Последний ряд
-                const isFirstCol = index % 7 === 0; // Первый столбец
-                const isLastCol = index % 7 === 6; // Последний столбец
+                    <div className="border-2 border-gray-500 rounded-[40px] bg-[#4C674033] overflow-hidden">
+                        <div className="grid grid-cols-7 gap-4 text-center text-lg leading-[4.75rem] bg-[#4c674014] text-[30px]">
+                            <div>{translations["monday"] || "Monday"}</div>
+                            <div>{translations["tuesday"] || "Tuesday"}</div>
+                            <div>{translations["wednesday"] || "Wednesday"}</div>
+                            <div>{translations["thursday"] || "Thursday"}</div>
+                            <div>{translations["friday"] || "Friday"}</div>
+                            <div>{translations["saturday"] || "Saturday"}</div>
+                            <div>{translations["sunday"] || "Sunday"}</div>
+                        </div>
 
-                return (
-                    <div 
-                    key={index} 
-                    className={`relative border p-4 h-32 flex flex-col border-black opacity-80 
-                        ${cell ? "bg-[#4C674066]" : "bg-transparent"} 
-                        ${isLastRow && isFirstCol ? "rounded-bl-[40px]" : ""} 
-                        ${isLastRow && isLastCol ? "rounded-br-[40px]" : ""}
-                    `}
-                >
-                    {cell && (
-                        <>
-                            <span className="absolute top-2 left-2 font-bold text-lg">{cell.day}</span>
-                            {cell.event && (
-                                <span className="text-sm text-black-200 text-center mt-6">
-                                    {cell.event.shortName ? cell.event.shortName : cell.event.name}
-                                </span>
-                            )}
-                        </>
-                    )}
-                </div>
-                
-                );
-            })}
-        </div>
-    </div>
-</section>
+                        <div className="grid grid-cols-7">
+                            {calendar.map((cell, index) => {
+                                const isLastRow = index >= calendar.length;
+                                const isFirstCol = index % 7 === 0;
+                                const isLastCol = index % 7 === 6;
 
+                                return (
+                                    <div
+                                        key={index}
+                                        className={`relative border p-4 h-32 flex flex-col border-black opacity-80 
+                                            ${cell ? "bg-[#4C674066]" : "bg-transparent"} 
+                                            ${isLastRow && isFirstCol ? "rounded-bl-[40px]" : ""} 
+                                            ${isLastRow && isLastCol ? "rounded-br-[40px]" : ""}
+                                        `}
+                                    >
+                                        {cell && (
+                                            <>
+                                                <span className="absolute top-2 left-2 font-bold text-lg">{cell.day}</span>
+                                                {cell.event && (
+                                                    <span className="text-sm text-black-200 text-center mt-6">
+                                                        {cell.event.shortName ? cell.event.shortName : cell.event.name}
+                                                    </span>
+                                                )}
+                                            </>
+                                        )}
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </div>
+                </section>
             </main>
             <Footer />
         </div>
