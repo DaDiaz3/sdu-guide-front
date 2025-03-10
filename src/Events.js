@@ -133,7 +133,7 @@ export default function Events() {
                 {/* Calendar Section */}
                 <section className="max-w-[88rem] mx-auto mt-[200px] mb-[100px]">
                     <h2 className="text-2xl text-center text-[48px] mb-20">
-                    {translations["event-program"] || "The program of events for"} {currentMonth}
+                    {translations["event-program"] || "The program of events for"} {translations[currentMonth]}
                     </h2>
 
                     <div className={`border-2 border-gray-500 rounded-[40px] overflow-hidden 
