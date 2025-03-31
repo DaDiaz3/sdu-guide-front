@@ -46,10 +46,13 @@ export default function HomePage() {
             <div className="container mx-auto py-10 px-6">
                 <Card className="mt-4">
                     <CardContent>
-                        <img src={campusMap} alt="Campus Map" className="w-full"/>
+                        <a href="/AllFacilities">
+                            <img src={campusMap} alt="Campus Map" className="w-full cursor-pointer"/>
+                        </a>
                     </CardContent>
                 </Card>
             </div>
+
 
             {/* Footer */}
             <Footer />

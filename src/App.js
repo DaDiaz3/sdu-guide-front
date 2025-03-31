@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from "./HomePage";
+import AllFacilities from "./AllFacilities"
 import HowToPage from "./HowToPage";
 
 import BlockD from "./BlockD/BlockD";
@@ -50,6 +51,8 @@ function App() {
                     <Routes>
                         {/* Главная страница */}
                         <Route path="/" element={<HomePage />} />
+                        {/* Страница всех блоков */}
+                        <Route path="/AllFacilities" element={<AllFacilities />} />
                         {/* Дополнительная страница */}
                         <Route path="/how-to" element={<HowToPage />} />
 
