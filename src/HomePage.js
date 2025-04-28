@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { Search } from "lucide-react";
 import { Input } from "./Components/Input";
 import { Card, CardContent } from "./Components/Card";
@@ -14,7 +14,10 @@ export default function HomePage() {
     const { translations } = useTranslation();
 
     const [searchValue, setSearchValue] = useState("");
+    const [events, setEvents] = useState([]); // ← new
+    const [eventBlocks, setEventBlocks] = useState([]); // ← new
     const [selectedBlock, setSelectedBlock] = useState(null);
+    const [hoveredBlock, setHoveredBlock] = useState(null);
     const campusRef = useRef(null);
 
     const blockCoords = [
@@ -41,6 +44,35 @@ export default function HomePage() {
         I: "#6A3BA4"
     };
 
+    const mergedBlocks = {};
+
+    blockCoords.forEach(coord => {
+        if (!mergedBlocks[coord.block]) {
+            mergedBlocks[coord.block] = {
+                block: coord.block,
+                top: parseInt(coord.top),
+                left: parseInt(coord.left),
+                right: parseInt(coord.left) + parseInt(coord.width),
+                bottom: parseInt(coord.top) + parseInt(coord.height),
+            };
+        } else {
+            mergedBlocks[coord.block].top = Math.min(mergedBlocks[coord.block].top, parseInt(coord.top));
+            mergedBlocks[coord.block].left = Math.min(mergedBlocks[coord.block].left, parseInt(coord.left));
+            mergedBlocks[coord.block].right = Math.max(mergedBlocks[coord.block].right, parseInt(coord.left) + parseInt(coord.width));
+            mergedBlocks[coord.block].bottom = Math.max(mergedBlocks[coord.block].bottom, parseInt(coord.top) + parseInt(coord.height));
+        }
+    });
+
+    // Теперь у каждого блока есть объединённые координаты и размеры
+    const mergedBlockCoords = Object.values(mergedBlocks).map(block => ({
+        top: block.top + "px",
+        left: block.left + "px",
+        width: (block.right - block.left) + "px",
+        height: (block.bottom - block.top) + "px",
+        link: `Block${block.block}`, // Ссылка теперь просто BlockD, BlockE и т.д.
+        block: block.block
+    }));
+
     const parseRoomCode = (code) => {
         const clean = code.toUpperCase().replace(/[^A-Z0-9]/g, "");
         const match = clean.match(/^([D-I])(\d{3})$/);
@@ -63,6 +95,26 @@ export default function HomePage() {
             link: `Block${block}${side}Side`
         };
     };
+
+    useEffect(() => {
+        fetch("http://localhost:8000/getAll-events?filter=8&withEnded=false&today=true")
+            .then((response) => response.json())
+            .then((data) => {
+                setEvents(data.data);
+                // Extract block letters from event places (e.g., "Block F" -> "F")
+
+                const blocks = data.data.map(event => {
+                    
+                    const match = event.place.match(/Block\s([A-Z])/);
+                    return match ? match[1] : null;
+                }).filter(Boolean); // remove nulls
+
+                setEventBlocks(blocks); // F, H, etc.
+            })
+            .catch((error) => {
+                console.error("Error fetching events:", error);
+            });
+    }, []);
 
     const handleSearch = () => {
         const result = parseRoomCode(searchValue);
@@ -122,34 +174,49 @@ export default function HomePage() {
                                     transformOrigin: "top left",
                                 }}
                             >
-                                {blockCoords.map((coord, index) => {
-                                    const isActive = selectedBlock && selectedBlock.link === coord.link;
-                                    const bgColor = isActive ? blockColors[coord.block] : "transparent";
+                           {mergedBlockCoords.map((coord, index) => {
+                                const isActive = selectedBlock && selectedBlock.link === coord.link;
+                                const isEventBlock = eventBlocks.includes(coord.block); 
+                                const bgColor = isActive ? blockColors[coord.block] : (isEventBlock ? "yellow" : "transparent");
 
-                                    return (
-                                        <a
-                                            key={index}
-                                            href={`/${coord.link}`}
-                                            className={`absolute transition-all duration-200 ease-in-out text-white text-sm font-bold flex items-center justify-center hover:scale-110`}
-                                            style={{
-                                                top: coord.top,
-                                                left: coord.left,
-                                                width: coord.width,
-                                                height: coord.height,
-                                                backgroundColor: bgColor,
-                                                border: isActive ? "2px solid black" : "none",
-                                                zIndex: isActive ? 10 : 1,
-                                                textDecoration: "none"
-                                            }}
-                                        >
-                                            {isActive && (
-                                                <div className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 bg-white text-black px-2 py-1 text-xs rounded shadow">
-                                                    {selectedBlock.room}
-                                                </div>
-                                            )}
-                                        </a>
-                                    );
-                                })}
+                                return (
+                                    <a
+                                        key={index}
+                                        href={`/${coord.link}`}
+                                        onMouseEnter={() => setHoveredBlock(coord.block)}
+                                        onMouseLeave={() => setHoveredBlock(null)}
+                                        className="absolute transition-all duration-200 ease-in-out text-white text-sm font-bold flex items-center justify-center hover:scale-110"
+                                        style={{
+                                            top: coord.top,
+                                            left: coord.left,
+                                            width: coord.width,
+                                            height: coord.height,
+                                            backgroundColor: bgColor,
+                                            border: isActive ? "2px solid black" : (isEventBlock ? "2px dashed orange" : "none"),
+                                            zIndex: isActive ? 10 : (isEventBlock ? 5 : 1),
+                                            textDecoration: "none",
+                                        }}
+                                    >
+                                        {hoveredBlock === coord.block && isEventBlock && (
+                                            <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-white text-black px-2 py-1 text-xs rounded shadow">
+                                                {events.find(event => event.place.includes(`Block ${coord.block}`))?.shortName || "Event"}
+                                            </div>
+                                        )}
+
+                                        {isActive && (
+                                            <div className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 bg-white text-black px-2 py-1 text-xs rounded shadow">
+                                                {selectedBlock.room}
+                                            </div>
+                                        )}
+
+                                        {isEventBlock && !isActive && (
+                                            <div className="w-2 h-2 bg-red-500 rounded-full animate-ping"></div>
+                                        )}
+                                    </a>
+                                );
+                            })}
+
+
                             </div>
                         </div>
                     </CardContent>
