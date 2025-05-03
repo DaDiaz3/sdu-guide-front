@@ -3,6 +3,9 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from "./HomePage";
 import AllFacilities from "./AllFacilities"
 import HowToPage from "./HowToPage";
+import DetailedMapPage from "./DetailedMapPage"
+import Sidebar from "./Sidebar"
+
 
 import BlockD from "./BlockD/BlockD";
 import BlockDLeftSide from "./BlockD/BlockDLeftSide";
@@ -42,11 +45,13 @@ import XlsxViewer from "./Components/AdminPanel/XlsxViwer/XlsxViewer";
 
 import { LanguageProvider } from "./LanguageContext";
 import { ThemeProvider } from "./ThemeContext"; // Подключаем провайдер темы
+import { ZoneProvider } from "./ZoneContext";
 
 function App() {
     return (
         <ThemeProvider>
             <LanguageProvider>
+                <ZoneProvider>
                 <Router>
                     <Routes>
                         {/* Главная страница */}
@@ -55,6 +60,10 @@ function App() {
                         <Route path="/AllFacilities" element={<AllFacilities />} />
                         {/* Дополнительная страница */}
                         <Route path="/how-to" element={<HowToPage />} />
+                        {/* Подробная страница карты */}
+                        <Route path="/detailed-map" element={<DetailedMapPage />} />
+                        {/*Боковая навигационная панель */}
+                        <Route path="/Sidebar" element={<Sidebar />} />
 
                         <Route path="/BlockD" element={<BlockD />} />
                         <Route path="/BlockDLeftSide" element={<BlockDLeftSide />} />
@@ -93,6 +102,7 @@ function App() {
                         <Route path="/test" element={<BuildingPlan />} />
                     </Routes>
                 </Router>
+                </ZoneProvider>
             </LanguageProvider>
         </ThemeProvider>
     );

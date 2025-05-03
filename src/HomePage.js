@@ -3,6 +3,7 @@ import { Search } from "lucide-react";
 import { Input } from "./Components/Input";
 import { Card, CardContent } from "./Components/Card";
 import { useTranslation } from "./LanguageContext";
+import SidebarHome from "./SidebarHome";
 
 import heroImage from "./Components/assets/campus2.png";
 import campusMap from "./Components/assets/campusmap.png";
@@ -14,25 +15,23 @@ export default function HomePage() {
     const { translations } = useTranslation();
 
     const [searchValue, setSearchValue] = useState("");
-    const [events, setEvents] = useState([]); // ← new
-    const [eventBlocks, setEventBlocks] = useState([]); // ← new
+    const [events, setEvents] = useState([]);
+    const [eventBlocks, setEventBlocks] = useState([]);
     const [selectedBlock, setSelectedBlock] = useState(null);
     const [hoveredBlock, setHoveredBlock] = useState(null);
+    const [highlightedZone, setHighlightedZone] = useState(null); // 🟨 Добавлено
     const campusRef = useRef(null);
 
     const blockCoords = [
-        { top: "210px", left: "505px", width: "13px", height: "45px", link: "BlockDLeftSide", block: "D" },
-        { top: "210px", left: "520px", width: "13.67px", height: "45px", link: "BlockDRightSide", block: "D" },
-        { top: "210px", left: "560px", width: "13px", height: "45px", link: "BlockELeftSide", block: "E" },
-        { top: "210px", left: "575px", width: "13.67px", height: "45px", link: "BlockERightSide", block: "E" },
-        { top: "210px", left: "620px", width: "13px", height: "45px", link: "BlockFLeftSide", block: "F" },
-        { top: "210px", left: "635px", width: "13.67px", height: "45px", link: "BlockFRightSide", block: "F" },
-        { top: "210px", left: "675px", width: "13px", height: "45px", link: "BlockGLeftSide", block: "G" },
-        { top: "210px", left: "690px", width: "13.67px", height: "45px", link: "BlockGRightSide", block: "G" },
-        { top: "210px", left: "735px", width: "13px", height: "45px", link: "BlockHLeftSide", block: "H" },
-        { top: "210px", left: "750px", width: "13.67px", height: "45px", link: "BlockHRightSide", block: "H" },
-        { top: "210px", left: "790px", width: "16px", height: "45px", link: "BlockILeftSide", block: "I" },
-        { top: "210px", left: "807px", width: "16px", height: "45px", link: "BlockIRightSide", block: "I" },
+        { top: "190px", left: "450px", width: "30px", height: "35px", link: "BlockDLeftSide", block: "D" },
+        { top: "190px", left: "505px", width: "30px", height: "35px", link: "BlockELeftSide", block: "E" },
+        { top: "190px", left: "555px", width: "30px", height: "35px", link: "BlockFLeftSide", block: "F" },
+        { top: "190px", left: "605px", width: "30px", height: "35px", link: "BlockGLeftSide", block: "G" },
+        { top: "190px", left: "655px", width: "30px", height: "35px", link: "BlockHLeftSide", block: "H" },
+        { top: "190px", left: "705px", width: "30px", height: "35px", link: "BlockILeftSide", block: "I" },
+        { top: "330px", left: "500px", width: "130px", height: "80px", link: "BlockJLeftSide", block: "J" }, // Dormitory
+        { top: "330px", left: "750px", width: "60px", height: "60px", link: "BlockKLeftSide", block: "K" },   // Sdu Life
+        { top: "225px", left: "400px", width: "350px", height: "55px", link: "BlockLLeftSide", block: "L" }, // Campus
     ];
 
     const blockColors = {
@@ -41,11 +40,13 @@ export default function HomePage() {
         F: "#363F78",
         G: "#5E7745",
         H: "#3B70A4",
-        I: "#6A3BA4"
+        I: "#6A3BA4",
+        J: "#B45A00",
+        K: "#008B8B",
+        L: "#708090"
     };
 
     const mergedBlocks = {};
-
     blockCoords.forEach(coord => {
         if (!mergedBlocks[coord.block]) {
             mergedBlocks[coord.block] = {
@@ -63,13 +64,12 @@ export default function HomePage() {
         }
     });
 
-    // Теперь у каждого блока есть объединённые координаты и размеры
     const mergedBlockCoords = Object.values(mergedBlocks).map(block => ({
         top: block.top + "px",
         left: block.left + "px",
         width: (block.right - block.left) + "px",
         height: (block.bottom - block.top) + "px",
-        link: `Block${block.block}`, // Ссылка теперь просто BlockD, BlockE и т.д.
+        link: `Block${block.block}`,
         block: block.block
     }));
 
@@ -101,15 +101,13 @@ export default function HomePage() {
             .then((response) => response.json())
             .then((data) => {
                 setEvents(data.data);
-                // Extract block letters from event places (e.g., "Block F" -> "F")
 
                 const blocks = data.data.map(event => {
-                    
                     const match = event.place.match(/Block\s([A-Z])/);
                     return match ? match[1] : null;
-                }).filter(Boolean); // remove nulls
+                }).filter(Boolean);
 
-                setEventBlocks(blocks); // F, H, etc.
+                setEventBlocks(blocks);
             })
             .catch((error) => {
                 console.error("Error fetching events:", error);
@@ -120,6 +118,7 @@ export default function HomePage() {
         const result = parseRoomCode(searchValue);
         if (result) {
             setSelectedBlock(result);
+            setHighlightedZone(null);
             setTimeout(() => {
                 campusRef.current?.scrollIntoView({ behavior: "smooth" });
             }, 100);
@@ -127,6 +126,12 @@ export default function HomePage() {
             setSelectedBlock(null);
             alert("Invalid room code");
         }
+    };
+
+    const handleZoneClick = (block) => {
+        setSelectedBlock({ block, link: `Block${block}` });
+        setHighlightedZone(block);
+        campusRef.current?.scrollIntoView({ behavior: "smooth" });
     };
 
     return (
@@ -160,67 +165,85 @@ export default function HomePage() {
             </div>
 
             <div ref={campusRef} className="container mx-auto py-10 px-6">
-                <Card className="mt-4">
-                    <CardContent>
-                        <div className="relative w-full max-w-[1030px] mx-auto">
-                            <img src={campusMap} alt="Campus Map" className="w-full" />
+                <div className="flex gap-6">
+                    <div className="w-[250px]">
+                        <SidebarHome onZoneClick={handleZoneClick} />
+                    </div>
+                    <Card className="flex-1 mt-4">
+                        <CardContent>
+                            <div className="relative w-full max-w-[1030px] mx-auto">
+                                <img src={campusMap} alt="Campus Map" className="w-full" />
+                                <div
+                                    className="absolute"
+                                    style={{
+                                        top: "0",
+                                        left: "0",
+                                        transform: "rotate(-8deg)",
+                                        transformOrigin: "top left",
+                                    }}
+                                >
+                                    {mergedBlockCoords.map((coord, index) => {
+                                        const isActive = selectedBlock && selectedBlock.link === coord.link;
+                                        const isEventBlock = eventBlocks.includes(coord.block);
+                                        const isCampus = coord.block === "L"; // Кампус
+                                        const isDormitoryOrSduLife = coord.block === "J" || coord.block === "K"; // Dormitory и Sdu Life
 
-                            <div
-                                className="absolute"
-                                style={{
-                                    top: "0",
-                                    left: "0",
-                                    transform: "rotate(-8deg)",
-                                    transformOrigin: "top left",
-                                }}
-                            >
-                           {mergedBlockCoords.map((coord, index) => {
-                                const isActive = selectedBlock && selectedBlock.link === coord.link;
-                                const isEventBlock = eventBlocks.includes(coord.block); 
-                                const bgColor = isActive ? blockColors[coord.block] : (isEventBlock ? "yellow" : "transparent");
+                                        return (
+                                            <a
+                                                key={index}
+                                                href={isCampus ? "/detailed-map" : `/Block${coord.block}`} // Генерация правильной ссылки для всех блоков
+                                                onMouseEnter={() => setHoveredBlock(coord.block)}
+                                                onMouseLeave={() => setHoveredBlock(null)}
+                                                className={`absolute transition-all duration-200 ease-in-out text-white text-sm font-bold flex items-center justify-center hover:scale-110 ${isDormitoryOrSduLife ? "cursor-default" : ""}`}
+                                                style={{
+                                                    top: coord.top,
+                                                    left: coord.left,
+                                                    width: coord.width,
+                                                    height: coord.height,
+                                                    border: isActive ? "2px solid black" : (isEventBlock ? "2px dashed orange" : "none"),
+                                                    zIndex: isActive ? 10 : (isEventBlock ? 5 : 1),
+                                                    textDecoration: "none",
+                                                }}
+                                            >
+                                                {hoveredBlock === coord.block && isEventBlock && (
+                                                    <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-white text-black px-2 py-1 text-xs rounded shadow">
+                                                        {events.find(event => event.place.includes(`Block ${coord.block}`))?.shortName || "Event"}
+                                                    </div>
+                                                )}
 
-                                return (
-                                    <a
-                                        key={index}
-                                        href={`/${coord.link}`}
-                                        onMouseEnter={() => setHoveredBlock(coord.block)}
-                                        onMouseLeave={() => setHoveredBlock(null)}
-                                        className="absolute transition-all duration-200 ease-in-out text-white text-sm font-bold flex items-center justify-center hover:scale-110"
-                                        style={{
-                                            top: coord.top,
-                                            left: coord.left,
-                                            width: coord.width,
-                                            height: coord.height,
-                                            backgroundColor: bgColor,
-                                            border: isActive ? "2px solid black" : (isEventBlock ? "2px dashed orange" : "none"),
-                                            zIndex: isActive ? 10 : (isEventBlock ? 5 : 1),
-                                            textDecoration: "none",
-                                        }}
-                                    >
-                                        {hoveredBlock === coord.block && isEventBlock && (
-                                            <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-white text-black px-2 py-1 text-xs rounded shadow">
-                                                {events.find(event => event.place.includes(`Block ${coord.block}`))?.shortName || "Event"}
-                                            </div>
-                                        )}
+                                                {isActive && selectedBlock.room && (
+                                                    <div className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 bg-white text-black px-2 py-1 text-xs rounded shadow">
+                                                        {selectedBlock.room}
+                                                    </div>
+                                                )}
 
-                                        {isActive && (
-                                            <div className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 bg-white text-black px-2 py-1 text-xs rounded shadow">
-                                                {selectedBlock.room}
-                                            </div>
-                                        )}
+                                                {highlightedZone === coord.block && (
+                                                    <div
+                                                        className="absolute z-[9999] left-1/2 transform -translate-x-1/2"
+                                                        style={{ top: '-60px' }}
+                                                    >
+                                                        <div className="bg-black text-white px-4 py-2 rounded-2xl text-lg font-[Cormorant] relative shadow-lg">
+                                                            {{
+                                                                J: "Dormitory",
+                                                                K: "Sdu Life",
+                                                                L: "Campus"
+                                                            }[coord.block]}
+                                                            <div className="absolute left-1/2 transform -translate-x-1/2 bottom-[-15px] w-[1px] h-[15px] bg-black"></div>
+                                                        </div>
+                                                    </div>
+                                                )}
 
-                                        {isEventBlock && !isActive && (
-                                            <div className="w-2 h-2 bg-red-500 rounded-full animate-ping"></div>
-                                        )}
-                                    </a>
-                                );
-                            })}
-
-
+                                                {isEventBlock && !isActive && (
+                                                    <div className="w-2 h-2 bg-red-500 rounded-full animate-ping"></div>
+                                                )}
+                                            </a>
+                                        );
+                                    })}
+                                </div>
                             </div>
-                        </div>
-                    </CardContent>
-                </Card>
+                        </CardContent>
+                    </Card>
+                </div>
             </div>
 
             <Footer />

@@ -5,6 +5,8 @@ import campusMap from "./Components/assets/campus3.png";
 import { ExternalLink, Clock } from "lucide-react";
 import { useTranslation } from "./LanguageContext";
 import { useTheme } from "./ThemeContext"; // Используем глобальную тему
+import { Link } from "react-router-dom";
+
 
 export default function HowToPage() {
     const { translations } = useTranslation();
@@ -24,9 +26,11 @@ export default function HowToPage() {
 
             {/* Секция "Navigate the campus easily and quickly!" */}
             <section className="w-full py-12 px-8 flex justify-center"
-                     style={{ backgroundColor: darkMode ? "#2F2D2D" : "#FFFFFF" }}>
+                     style={{backgroundColor: darkMode ? "#2F2D2D" : "#FFFFFF"}}>
                 <div className="w-[1440px] flex items-center rounded-lg">
-                    <img src={campusMap} alt="Campus Map" className="w-[45%] rounded-lg shadow-md"/>
+                    <Link to="/detailed-map" className="block w-[45%]">
+                        <img src={campusMap} alt="Campus Map" className="w-full rounded-lg shadow-md cursor-pointer" />
+                    </Link>
                     <div className="ml-12 w-[50%]">
                         <h2 className="text-[48px] font-bold font-[Playfair Display]">
                             {translations.navigate_campus || "Navigate the campus easily and quickly!"}
@@ -35,17 +39,17 @@ export default function HowToPage() {
                             {translations.interactive_map_help || "The interactive map helps you quickly find classrooms, libraries, cafes, and more."}
                         </p>
 
-                        <a href="#"
-                           className="text-[20px] inline-flex items-center font-bold text-lg hover:underline">
+                        <Link to="/detailed-map"
+                              className="text-[20px] inline-flex items-center font-bold text-lg hover:underline">
                             <ExternalLink size={30} className="mr-2"/> {translations.view_map || "[View map]"}
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </section>
 
             {/* Секция "Why our portal?" */}
             <section className="w-full h-[601px] flex flex-col justify-center py-12"
-                     style={{ backgroundColor: darkMode ? "#3D4037" : "#878F71" }}>
+                     style={{backgroundColor: darkMode ? "#3D4037" : "#878F71"}}>
                 <div className="w-[1440px] mx-auto flex items-center relative">
                     <div className="w-1/2 px-12 flex justify-center">
                         <h2 className="text-[48px] font-normal font-[Playfair Display] translate-y-[-60px] text-white">
